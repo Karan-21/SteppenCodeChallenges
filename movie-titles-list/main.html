@@ -7,7 +7,30 @@
       //
       // TODO: Implement this function.
       //
-      const getMovieList = () => {}
+      const getMovieList = async (year) => {
+        // Making the use of ES6 feature called async/await for fetching the API.
+
+        // Using Fetch function to fetch the API.
+        const response = await fetch('https://jsonmock.hackerrank.com/api/movies');
+
+        // converting the response to json and storing in a variable named "data".
+        const data = await response.json();
+
+        // Getting inside the actual Array of Data where I can find the Year and Titles.
+        const result = data.data;
+
+        const arr = []
+
+        // Looking till the length of result Array, which I have received from the API and storing it's Title to an Array.
+        for(let i=0;i<result.length;i++)
+        {
+          arr.push(result[i].Title);
+        }
+
+        // Finally Sorting and it and returing the Array with Titles.
+        return arr.sort();
+
+      }
     </script>
   </head>
 
@@ -31,7 +54,7 @@
           <li><code>per_page</code>: the maximum number of results returned per page</li>
           <li><code>total</code>: the total number of results</li>
           <li><code>total_pages</code>: the total number of pages with results</li>
-          <li><code>data</code>: a JSON array of objects with the format</li>
+          <li><code>data</code>: a JSON array of objects with the format</li>
           <ul>
             <li><code>Title</code>: Movie title</li>
             <li><code>Year</code>: Movie year (same as the year that was queried)</li>
