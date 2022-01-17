@@ -7,7 +7,42 @@
       //
       // TODO: Implement this function.
       //
-      const transformObject = () => {}
+      const transformObject = (obj) => {
+        // Declared an Arrow Function named transformObject which is taking an "obj" as an argument.
+
+        // Looping through the entire Obj, which I'm getting as an argument.
+        for (var idx in obj) {
+
+            // Storing it's particular values in a variable named "data".
+            var data = obj[idx];
+
+            // Checking:
+            // If the typeof data is a String (That's the reason I'm using 3 equals signs because it compares the type as well).
+            if (typeof data === 'string') {
+                obj[idx] = data + ' BLARGH';
+                //  Then concatenated "BLARGH" to each string with a space.
+            } 
+            
+            // Else If the typeof data is a Number (That's the reason I'm using 3 equals signs because it compares the type as well).
+            else if (typeof data === 'number') {
+                obj[idx] = data + 6;
+                //  Then incremented each number by 6.
+            } 
+
+            // Also, if there is an Array inside the object.
+            // Then Map through the Array and incremented each number by 6.
+            else if (Array.isArray(data)) {
+                obj[idx] = data.map((response) => response + 6);
+            } 
+            
+            // Else simply assigning any other value to the obj[idx].
+            else {
+                obj[idx] = transformObject(data);
+            }
+        }
+
+        return obj;
+      }
     </script>
   </head>
 
